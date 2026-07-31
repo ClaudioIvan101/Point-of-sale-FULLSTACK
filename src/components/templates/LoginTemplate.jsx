@@ -20,7 +20,7 @@ export function LoginTemplate() {
                <Linea>
                 <span>0</span>
                </Linea>
-               <Btnsave titulo={"Google"} ></Btnsave>
+               <Btnsave titulo={"Google"} bgcolor={"#fff"} icono={<v.iconogoogle/>} ></Btnsave>
             </div>
            </section>
        </Container>

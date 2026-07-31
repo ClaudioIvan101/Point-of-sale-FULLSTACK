@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Linea = styled.div`
 background-color: ${({theme}) => theme.color2};
 height: 2px;
-border-radius: 15px;
+border-radius: 100px;
 margin: 20px 0;
 text-align: center;
 position: relative;
