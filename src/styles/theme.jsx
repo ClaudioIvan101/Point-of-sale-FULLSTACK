@@ -40,6 +40,7 @@ export const Light = {
     color1: "#1cb0f6",
     color2:"#E5E5E5"
   };
+  
   export const Dark = {
     colortitlecard: "#8C9298",
     colorsubtitlecard: "#F0F0F0",

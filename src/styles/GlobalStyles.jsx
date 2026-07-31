@@ -7,6 +7,6 @@ export const GlobalStyles = createGlobalStyle`
   }
   body {
     font-family: 'Manrope', sans-serif;
-    background-color: #f7f7f7;
+    background-color: ${(props) => props.theme.bgtotal};
   }
 `   

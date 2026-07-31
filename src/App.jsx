@@ -10,7 +10,7 @@ function App() {
   const {themeStyle} = useThemeStore();
   return (
      <ThemeProvider theme={themeStyle}>
-      <Container>
+      <Container className={sidebarOpen === true ? "active": ""}>
         <GlobalStyles/>
         <section className="contentSidebar">
           <Sidebar state={sidebarOpen} setState={() => setSidebarOpen(!sidebarOpen)}/>
@@ -45,9 +45,11 @@ const Container = styled.main`
   }
   @media ${Device.tablet} {
     grid-template-columns: 88px 1fr;
+    &.active{
+    grid-template-columns: 260px 1fr;
+    }
     .contentSidebar {
       display: initial;
-      background-color: rgba(18, 175, 44, 0.5);
   }; 
   .contentMenuambur {
     display: none;

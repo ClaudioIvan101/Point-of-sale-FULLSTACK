@@ -10,6 +10,5 @@ export function HomeTemplate() {
 const Container = styled.main`
   display: grid;
   grid-template-columns: 1fr;
-  background-color: #f7f7f7;
   height:100vh;
 `
