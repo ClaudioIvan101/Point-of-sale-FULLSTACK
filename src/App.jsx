@@ -1,17 +1,20 @@
 import styled, {ThemeProvider} from "styled-components"
-import {GlobalStyles, MyRoutes, Sidebar, AuthContextProvider} from "./index"
+import {GlobalStyles, MyRoutes, Sidebar, AuthContextProvider, Login} from "./index"
 import { Device } from "./styles/breakpoints"
 import { useThemeStore } from "./store/ThemeStore"
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const  [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const {pathname} = useLocation();
   const {themeStyle} = useThemeStore();
   return (
      <ThemeProvider theme={themeStyle}>
       <AuthContextProvider> 
-      <Container className={sidebarOpen === true ? "active": ""}>
+        {
+        pathname != "/login"?( 
+        <Container className={sidebarOpen === true ? "active": ""}>
         <GlobalStyles/>
         <section className="contentSidebar">
           <Sidebar state={sidebarOpen} setState={() => setSidebarOpen(!sidebarOpen)}/>
@@ -22,7 +25,9 @@ function App() {
         <section className="contentRouters">
           <MyRoutes/>
         </section>
-      </Container>
+      </Container>):(<Login/>)
+        }
+     
       </AuthContextProvider>
   
      </ThemeProvider>
@@ -33,6 +38,7 @@ const Container = styled.main`
   display: grid;
   grid-template-columns: 1fr;
   background-color: #f7f7f7;
+  color: ${({theme}) => theme.text};
   .contentSidebar {
     display: none;
   }

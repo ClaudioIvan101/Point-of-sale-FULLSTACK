@@ -1,6 +1,7 @@
 export * from './App';
 export * from './main';
 export * from './context/AuthContext';
+export * from './hooks/ProtectedRoutes';
 export * from './pages/home';
 export * from './pages/Login';
 export * from './routers/routes';

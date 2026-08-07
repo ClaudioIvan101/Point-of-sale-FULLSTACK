@@ -7,8 +7,12 @@ export function LoginTemplate() {
       const {loginGoogle} = useAuthStore()
      return (
        <Container>
+        <ContentLogo>
+          <img src={v.logo} alt="Logo"/>
+          <span>FacilPoint</span>
+        </ContentLogo>
             <div className ="card">
-               <Title $paddingbottom={"20px"}>Bienvenido a FacilPoint</Title>
+               <Title $paddingbottom={"20px"}>Bienvenido</Title>
                <form>
                  <InputText2>
                  <input className="form__field" placeholder="Ingrese su correo" type="text"/>
@@ -35,6 +39,8 @@ height: 100vh;
 justify-content:center;
 align-items:center;
 flex-direction: column;
+padding: 0 10px;
+color: ${({theme}) => theme.text};
   .card {
     height: 100%;
     width: 100%;
@@ -49,4 +55,18 @@ flex-direction: column;
       width: 400px;
     }
 }
-`
+`;
+const ContentLogo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  img{
+    width: 20%;
+  }
+  span{
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 10px;
+  }
+`;
