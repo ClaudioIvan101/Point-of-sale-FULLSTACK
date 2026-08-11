@@ -12,10 +12,10 @@ function App() {
   return (
      <ThemeProvider theme={themeStyle}>
       <AuthContextProvider> 
+      <GlobalStyles/>
         {
         pathname != "/login"?( 
         <Container className={sidebarOpen === true ? "active": ""}>
-        <GlobalStyles/>
         <section className="contentSidebar">
           <Sidebar state={sidebarOpen} setState={() => setSidebarOpen(!sidebarOpen)}/>
         </section>

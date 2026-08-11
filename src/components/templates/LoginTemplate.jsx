@@ -38,11 +38,11 @@ background: #fff;
 height: 100vh;
 justify-content:center;
 align-items:center;
+text-align: center;
 flex-direction: column;
 padding: 0 10px;
 color: ${({theme}) => theme.text};
   .card {
-    height: 100%;
     width: 100%;
     display: flex;
     text-align: center;
@@ -50,7 +50,6 @@ color: ${({theme}) => theme.text};
     justify-content: center;
     border-radius: 10px;
     padding: 20px;
-    margin: 20px;
     @media ${Device.tablet} {
       width: 400px;
     }
