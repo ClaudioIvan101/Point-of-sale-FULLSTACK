@@ -1,5 +1,7 @@
 import { supabase } from "./supabase"
 import {Swatl} from "sweetalert2" 
+
+const tabla="categorias";
 // p es simplemente el parametro de la funcion
 export async function InsertarCategorias(p,file) { 
     const {error, data} = await supabase.rpc("insertarcategorias", p);
@@ -15,7 +17,12 @@ export async function InsertarCategorias(p,file) {
     if(img!=undefined) {
         const nuevo_id = data;
         const urlImagen = await subirImagen(nuevo_id, file);
+        const iconoeditar = {
+            icono:urlImagen.publicUrl,
+            id: nuevo_id
+        }
     }
+    editarIconoCategorias(iconoeditar);
     
 }
 
@@ -57,4 +64,11 @@ async function editarIconoCategorias(p) {
       });
       return;
 }
+}
+
+export async function MostrarCategorias(p) {
+    const {data} = await supabase.from(tabla)
+    .select().eq("id_empresa", p.id_empresa)
+    .order("id", {ascending: false});
+    return data;
 }
