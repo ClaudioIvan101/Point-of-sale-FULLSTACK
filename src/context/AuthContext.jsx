@@ -55,7 +55,6 @@ export const AuthContextProvider = ({ children }) => {
       await InsertarAdmin(pUser);
     }
   };
-
   return (
     <AuthContext.Provider value={{ user }}>
       {children}
@@ -65,4 +64,4 @@ export const AuthContextProvider = ({ children }) => {
 
 export const UserAuth = () => {
   return useContext(AuthContext);
-}; 
+};

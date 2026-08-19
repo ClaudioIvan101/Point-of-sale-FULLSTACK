@@ -1,36 +1,38 @@
-import styled, {ThemeProvider} from "styled-components"
-import {GlobalStyles, MyRoutes, Sidebar, AuthContextProvider, Login} from "./index"
+import styled, { ThemeProvider } from "styled-components"
+import { GlobalStyles, MyRoutes, Sidebar, AuthContextProvider, Login } from "./index"
 import { Device } from "./styles/breakpoints"
 import { useThemeStore } from "./store/ThemeStore"
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
-  const  [sidebarOpen, setSidebarOpen] = useState(false);
-  const {pathname} = useLocation();
-  const {themeStyle} = useThemeStore();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { pathname } = useLocation();
+  const { themeStyle } = useThemeStore();
   return (
-     <ThemeProvider theme={themeStyle}>
-      <AuthContextProvider> 
-      <GlobalStyles/>
+    <ThemeProvider theme={themeStyle}>
+      <AuthContextProvider>
+        <GlobalStyles />
         {
-        pathname != "/login"?( 
-        <Container className={sidebarOpen === true ? "active": ""}>
-        <section className="contentSidebar">
-          <Sidebar state={sidebarOpen} setState={() => setSidebarOpen(!sidebarOpen)}/>
-        </section>
-        <section className="contentMenuambur">
-          <span>Menu</span>
-        </section>
-        <section className="contentRouters">
-          <MyRoutes/>
-        </section>
-      </Container>):(<Login/>)
+          pathname != "/login" ? (
+            <Container className={sidebarOpen === true ? "active" : ""}>
+              <section className="contentSidebar">
+                <Sidebar state={sidebarOpen} setState={() => setSidebarOpen(!sidebarOpen)} />
+              </section>
+              <section className="contentMenuambur">
+                <span>Menu</span>
+              </section>
+              <section className="contentRouters">
+                <MyRoutes />
+              </section>
+            </Container>) : (<Login />)
         }
-     
+        <ReactQueryDevtools initialIsOpen={true} />
       </AuthContextProvider>
-  
-     </ThemeProvider>
+
+
+    </ThemeProvider>
   )
 }
 
@@ -38,7 +40,7 @@ const Container = styled.main`
   display: grid;
   grid-template-columns: 1fr;
   background-color: #f7f7f7;
-  color: ${({theme}) => theme.text};
+  color: ${({ theme }) => theme.text};
   .contentSidebar {
     display: none;
   }
