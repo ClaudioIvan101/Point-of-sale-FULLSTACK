@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { Icono } from "../atomos/Icono";
-export function Btnsave({
+export function Btn1({
   funcion,
   titulo,
   bgcolor,
   icono,
   url,
   color,
-  disabled,width
+  disabled, width
 }) {
   return (
     <Container $width={width}
@@ -15,7 +15,7 @@ export function Btnsave({
       $color={color}
       type="submit"
       $bgcolor={bgcolor}
-      onClick={funcion} 
+      onClick={funcion}
     >
       <section className="content">
         <Icono $color={color}>{icono}</Icono>
@@ -46,14 +46,14 @@ const Container = styled.button`
   color: rgb(${(props) => props.$color});
   align-items: center;
   justify-content: center;
- width:${(props)=>props.$width};
+ width:${(props) => props.$width};
   .content {
     display: flex;
     gap: 12px;
   }
   &:active {
     transform: translate(0, 0);
-    border-bottom: 2px solid rgba(50, 50, 50, 0.5);
+    border-bottom: 2px solid rgba(50, 50, 50, 0.2);
   }
   &[disabled] {
     background-color: #646464;
