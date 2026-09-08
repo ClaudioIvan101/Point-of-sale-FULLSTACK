@@ -1,74 +1,104 @@
 import { supabase } from "./supabase"
-import {Swatl} from "sweetalert2" 
+import { Swatl } from "sweetalert2"
 
-const tabla="categorias";
+const tabla = "categorias";
 // p es simplemente el parametro de la funcion
-export async function InsertarCategorias(p,file) { 
-    const {error, data} = await supabase.rpc("insertarcategorias", p);
-    if(error) { 
+export async function InsertarCategorias(p, file) {
+    const { error, data } = await supabase.rpc("insertarcategorias", p);
+    if (error) {
         Swal.fire({
             icon: "error",
             title: "UPS!",
             text: "Ocurrio un error inesperado en categoria",
-          });
-          return;
+        });
+        return;
     }
     const img = file.size;
-    if(img!=undefined) {
+    if (img != undefined) {
         const nuevo_id = data;
         const urlImagen = await subirImagen(nuevo_id, file);
         const iconoeditar = {
-            icono:urlImagen.publicUrl,
+            icono: urlImagen.publicUrl,
             id: nuevo_id
         }
     }
     editarIconoCategorias(iconoeditar);
-    
+
 }
 
 async function subirImagen(idcategoria) {
-    const ruta  = "categorias/" + idcategoria;
-    const {data,error} = await supabase
-    .storage
-    .from('imagenes')
-    .upload(ruta, file, {
-        cacheControl: '0',
-        upsert: true
-    })
-    if(data){ 
-       const {data:urlImagen} = await supabase
-       .storage.from("imagenes").getPublicUrl(ruta);      
+    const ruta = "categorias/" + idcategoria;
+    const { data, error } = await supabase
+        .storage
+        .from('imagenes')
+        .upload(ruta, file, {
+            cacheControl: '0',
+            upsert: true
+        })
+    if (data) {
+        const { data: urlImagen } = await supabase
+            .storage.from("imagenes").getPublicUrl(ruta);
         return urlImagen;
     }
-    if(error) { 
+    if (error) {
         Swal.fire({
             icon: "error",
             title: "UPS!",
             text: "Ocurrio un error en la imagen",
-          });
-          return;
+        });
+        return;
     }
 }
 // editar imagen 
 
 async function editarIconoCategorias(p) {
-   const {error} = await supabase
-   .from("categorias")
-   .update(p)
-   .eq("id", p.id);
-   if(error) { 
-    Swal.fire({
-        icon: "error",
-        title: "UPS!",
-        text: "Ocurrio un error inesperado en categoria",
-      });
-      return;
+    const { error } = await supabase
+        .from("categorias")
+        .update(p)
+        .eq("id", p.id);
+    if (error) {
+        Swal.fire({
+            icon: "error",
+            title: "UPS!",
+            text: "Ocurrio un error inesperado en categoria",
+        });
+        return;
+    }
+    if (filenew != "-" && filenew.size != undefined) {
+        if (fileold != "-") {
+            await EditarIconoStorage(p._id, filenew);
+        } else {
+            const dataImagen = await subirImagen(p._id, filenew)
+            const iconoeditar = {
+                icono: dataImagen.publicUrl,
+                id: p._id
+            }
+            await editarIconoCategorias(iconoeditar);
+        }
+    }
 }
+
+export async function EditarIconoStorage(id, file) {
+    const ruta = "categorias/" + id;
+    const { error } = await supabase
+        .storage
+        .from("imagenes")
+        .update(ruta, file, {
+            cacheControl: "0",
+            upsert: true
+        })
+    if (error) {
+        Swal.fire({
+            icon: "error",
+            title: "UPS!",
+            text: "Ocurrio un error inesperado en categoria",
+        });
+    }
 }
 
 export async function MostrarCategorias(p) {
-    const {data} = await supabase.from(tabla)
-    .select().eq("id_empresa", p.id_empresa)
-    .order("id", {ascending: false});
+    const { data } = await supabase.from(tabla)
+        .select().eq("id_empresa", p.id_empresa)
+        .order("id", { ascending: false });
     return data;
 }
