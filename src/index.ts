@@ -20,7 +20,7 @@ export * from './utils/dataEstatica';
 export * from './components/atomos/Icono';
 export * from './components/atomos/Linea';
 export * from './components/atomos/Title';
-export * from './components/moleculas/Btnsave';
+export * from './components/moleculas/Btn1';
 export * from './components/organismos/Footer';
 export * from './components/organismos/ToggleTheme';
 export * from './components/templates/HomeTemplate';

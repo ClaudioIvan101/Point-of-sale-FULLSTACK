@@ -1,35 +1,35 @@
-import styled, {ThemeProvider} from "styled-components"
-import {InputText2, Title, Btnsave, Icono, Linea, Footer, useAuthStore} from "../../index"
-import {v} from "../../styles/variables"
-import {Device} from "../../styles/breakpoints"
+import styled, { ThemeProvider } from "styled-components"
+import { InputText2, Title, Btn1, Icono, Linea, Footer, useAuthStore } from "../../index"
+import { v } from "../../styles/variables"
+import { Device } from "../../styles/breakpoints"
 
 export function LoginTemplate() {
-      const {loginGoogle} = useAuthStore()
-     return (
-       <Container>
-        <ContentLogo>
-          <img src={v.logo} alt="Logo"/>
-          <span>FacilPoint</span>
-        </ContentLogo>
-            <div className ="card">
-               <Title $paddingbottom={"20px"}>Bienvenido</Title>
-               <form>
-                 <InputText2>
-                 <input className="form__field" placeholder="Ingrese su correo" type="text"/>
-                 </InputText2>
-                 <InputText2>
-                 <input className="form__field" type="password"/>
-                 </InputText2>
-                 <Btnsave titulo={"INGRESAR"} bgcolor={"#49e"} color="255,255,255" width={"100%"}></Btnsave>
-               </form>
-               <Linea>
-                <span>0</span>
-               </Linea>
-               <Btnsave funcion={loginGoogle} titulo={"Google"} bgcolor={"#fff"} icono={<v.iconogoogle/>} ></Btnsave>
-            </div>
-            <Footer/>
-       </Container>
-     )
+  const { loginGoogle } = useAuthStore()
+  return (
+    <Container>
+      <ContentLogo>
+        <img src={v.logo} alt="Logo" />
+        <span>FacilPoint</span>
+      </ContentLogo>
+      <div className="card">
+        <Title $paddingbottom={"20px"}>Bienvenido</Title>
+        <form>
+          <InputText2>
+            <input className="form__field" placeholder="Ingrese su correo" type="text" />
+          </InputText2>
+          <InputText2>
+            <input className="form__field" type="password" />
+          </InputText2>
+          <Btn1 titulo={"INGRESAR"} bgcolor={"#49e"} color="255,255,255" width={"100%"}></Btn1>
+        </form>
+        <Linea>
+          <span>0</span>
+        </Linea>
+        <Btn1 funcion={loginGoogle} titulo={"Google"} bgcolor={"#fff"} icono={<v.iconogoogle />} ></Btn1>
+      </div>
+      <Footer />
+    </Container>
+  )
 }
 
 const Container = styled.main`
@@ -41,7 +41,7 @@ align-items:center;
 text-align: center;
 flex-direction: column;
 padding: 0 10px;
-color: ${({theme}) => theme.text};
+color: ${({ theme }) => theme.text};
   .card {
     width: 100%;
     display: flex;
