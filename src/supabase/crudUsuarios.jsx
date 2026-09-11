@@ -27,3 +27,12 @@ export async function InsertarAdmin(p) {
     }
     return data;
 }
+
+export const ObtenerIdAuthSupabase = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session != null) {
+        const { user } = session;
+        const idAuth = user.id;
+        return idAuth;
+    }
+}

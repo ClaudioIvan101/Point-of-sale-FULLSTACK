@@ -25,6 +25,20 @@ export async function InsertarEmpresa(p) {
         }
         return;
     }
-    return data; 
+    return data;
 
+}
+
+export async function MostrarEmpresaXidUsuario(p) {
+    const { data, error } = await supabase.rpc("mostrarempresaxiuser", p)
+        .maybeSingle();
+    if (error) {
+        Swal.fire({
+            icon: "error",
+            title: "UPS!",
+            text: "Ocurrio un error al mostrar la empresa",
+        });
+        return;
+    }
+    return data;
 }
