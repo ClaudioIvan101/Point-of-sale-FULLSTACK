@@ -1,11 +1,14 @@
 import { create } from "zustand";
-import { MostrarUsuarios } from "../supabase/crudUsuario";
+import { MostrarUsuarios, ObtenerIdAuthSupabase } from "../supabase/crudUsuario";
 
 export const useUsuariosStore = create((set) => ({
-    dataModulos: [],
-    mostrarModulos: async () => {
-        const response = await MostrarModulos();
-        set({ dataModulos: response });
+
+
+    dataUsuarios: [],
+    mostrarusuarios: async () => {
+        const idauth = await ObtenerIdAuthSupabase();
+        const response = await MostrarUsuarios({ id_auth: idauth });
+        set({ dataUsuarios: response });
         return response;
     },
 }))

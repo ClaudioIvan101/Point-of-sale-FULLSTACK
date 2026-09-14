@@ -28,11 +28,13 @@ export async function InsertarAdmin(p) {
     return data;
 }
 
-export const ObtenerIdAuthSupabase = async () => {
+export async function ObtenerIdAuthSupabase() {
     const { data: { session } } = await supabase.auth.getSession();
     if (session != null) {
         const { user } = session;
         const idAuth = user.id;
         return idAuth;
+    } else {
+        console.log("No hay sesion")
     }
 }
